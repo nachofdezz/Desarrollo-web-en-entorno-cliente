@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <button id="addTaskBtn" class="add-task-btn">Agregar Tarea</button>
+
+        <!-- Modal para crear o editar tareas -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Agregar Tarea</h2>
+                <form id="taskForm">
+                    <input type="text" id="taskTitle" placeholder="Nombre de la tarea" required>
+                    <textarea id="taskDescription" placeholder="Descripción"></textarea>
+                    <input type="date" name="" id="taskDueDate" placeholder="dd/mm/aaaa">
+                    <button type="submit" class="save-btn">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tablero de tareas -->
+        <div class="board">
+            <div class="column" id="pending" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3>Pendientes</h3>
+                <div class="task-list" id="pendingTasks"></div>
+            </div>
+            <div class="column" id="inProgress" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3>En Progreso</h3>
+                <div class="task-list" id="inProgressTasks"></div>
+            </div>
+            <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3>Finalizadas</h3>
+                <div class="task-list" id="completedTasks"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
