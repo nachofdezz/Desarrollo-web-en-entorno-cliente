@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let token = localStorage.getItem("token");
+            let expiracion = localStorage.getItem("expiracion");
+            if (!token || !expiracion || new Date(expiracion) < new Date()) {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <button id="btnAgregarTarea" class="btn-agregar-tarea">Agregar Tarea</button>
+        <div id="modalTarea" class="modal">
+            <div class="contenido-modal">
+                <span class="cerrar">&times;</span>
+                <h2>Agregar Tarea</h2>
+                <form id="formularioTarea">
+                    <input type="text" id="tituloTarea" placeholder="Nombre de la tarea" required>
+                    <textarea id="descripcionTarea" placeholder="Descripción"></textarea>
+                    <input type="date" id="fechaVencimientoTarea" placeholder="dd/mm/aaaa">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="tablero">
+            <div class="columna" id="pendiente" ondrop="soltar(event)" ondragover="permitirSoltar(event)">
+                <h3>Pendientes</h3>
+                <div class="lista-tareas" id="pendienteTareas"></div>
+            </div>
+            <div class="columna" id="enProgreso" ondrop="soltar(event)" ondragover="permitirSoltar(event)">
+                <h3>En Progreso</h3>
+                <div class="lista-tareas" id="enProgresoTareas"></div>
+            </div>
+            <div class="columna" id="finalizada" ondrop="soltar(event)" ondragover="permitirSoltar(event)">
+                <h3>Finalizadas</h3>
+                <div class="lista-tareas" id="finalizadaTareas"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
